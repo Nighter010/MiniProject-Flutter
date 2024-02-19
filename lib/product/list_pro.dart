@@ -16,7 +16,7 @@ class _showProState extends State<showPro> {
 
   Future<List<Map<String, dynamic>>> _fetchPlantData() async {
     final response = await http.get(Uri.parse(
-        'http://localhost:88/apiflutter_MiniProject/product/show_pro.php'));
+        'http://localhost:88/apiflutter_MiniProject/product/show_proJ.php'));
     print(response.statusCode);
     if (response.statusCode == 200) {
       final List<dynamic> parsed = json.decode(response.body);
@@ -108,6 +108,7 @@ class _showProState extends State<showPro> {
                     child: DataTable(
                       columns: <DataColumn>[
                         DataColumn(label: Text('รหัสร้านค้า')),
+                        DataColumn(label: Text('ชื่อร้านค้า')),
                         DataColumn(label: Text('รหัสสินค้า')),
                         DataColumn(label: Text('ชื่อสินค้า')),
                         DataColumn(label: Text('หน่วยนับ')),
@@ -123,6 +124,7 @@ class _showProState extends State<showPro> {
                         return DataRow(
                           cells: <DataCell>[
                             DataCell(Text(data['shopCode'].toString())),
+                            DataCell(Text(data['shopName'].toString())),
                             DataCell(Text(data['proCode'].toString())),
                             DataCell(Text(data['proName'].toString())),
                             DataCell(Text(data['unti'].toString())),

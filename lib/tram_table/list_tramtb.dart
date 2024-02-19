@@ -16,7 +16,7 @@ class _showTramTBState extends State<showTramTB> {
 
   Future<List<Map<String, dynamic>>> _fetchPlantData() async {
     final response = await http.get(Uri.parse(
-        'http://localhost:88/apiflutter_MiniProject/tramTB/show_tourTB.php'));
+        'http://localhost:88/apiflutter_MiniProject/tramTB/show_tourTBJ.php'));
     print(response.statusCode);
     if (response.statusCode == 200) {
       final List<dynamic> parsed = json.decode(response.body);
@@ -109,6 +109,7 @@ class _showTramTBState extends State<showTramTB> {
                       columns: <DataColumn>[
                         DataColumn(label: Text('ลำดับที่')),
                         DataColumn(label: Text('รหัสสถานที่')),
+                        DataColumn(label: Text('ชื่อสถานที่')),
                         DataColumn(label: Text('เวลา')),
                         DataColumn(
                           label: Text('แก้ไข'),
@@ -122,6 +123,7 @@ class _showTramTBState extends State<showTramTB> {
                           cells: <DataCell>[
                             DataCell(Text(data['No_tram'].toString())),
                             DataCell(Text(data['tourCode'].toString())),
+                            DataCell(Text(data['tourName'].toString())),
                             DataCell(Text(data['time'].toString())),
                             DataCell(IconButton(
                               icon: Icon(Icons.edit),
