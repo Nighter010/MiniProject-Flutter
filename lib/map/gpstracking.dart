@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mn_641463036/mainmenu.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GPSTracking extends StatefulWidget {
   @override
@@ -28,10 +27,13 @@ class _GPSTrackingState extends State<GPSTracking> {
       setState(() {
         markers = locations.map((location) {
           return Marker(
-            markerId: MarkerId(location['tourCode']
-                .toString()), // ตอ้ งใชข้ อ้มลู ทเี่ ป็น unique เชน่ ID
+            markerId:
+                MarkerId(location['tourCode']?.toString() ?? 'defaultMarkerId'),
+
+            // ตอ้ งใชข้ อ้มลู ทเี่ ป็น unique เชน่ ID
             position: LatLng(double.parse(location['latitude']),
                 double.parse(location['longtitude'])),
+
             infoWindow: InfoWindow(
                 title: location['tourName'] +
                     " "), // ปรับตามชอื่ ทตี่ อ้ งการแสดงใน InfoWindow
@@ -58,7 +60,7 @@ class _GPSTrackingState extends State<GPSTracking> {
             ));
           },
         ),
-        title: Text('Smart Tracker'),
+        title: Text('หมุดสถานที่ท่องเที่ยว'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
@@ -69,8 +71,8 @@ class _GPSTrackingState extends State<GPSTracking> {
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: LatLng(
-              19.7313168, 99.2586095), // ต าแหน่งเริ่มต ้นของแผนที่ (Bangkok)
-          zoom: 10,
+              19.9216394, 99.7963226), // ต าแหน่งเริ่มต ้นของแผนที่ (Bangkok)
+          zoom: 11,
         ),
         onMapCreated: (GoogleMapController controller) {
           setState(() {

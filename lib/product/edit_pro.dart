@@ -19,7 +19,8 @@ class _EditProPageState extends State<EditProPage> {
   late TextEditingController untiController;
   late TextEditingController priceController;
 
-  List<String> shopCode = [];
+  List<Map<String, dynamic>> shopCodes = [];
+  Map<String, dynamic>? selectedShop;
 
   @override
   void initState() {
@@ -36,20 +37,26 @@ class _EditProPageState extends State<EditProPage> {
         TextEditingController(text: widget.data['price'].toString());
     fetchShopCode().then((codes) {
       setState(() {
-        shopCode = codes;
+        shopCodes = codes;
+        selectedShop = shopCodes.isNotEmpty ? shopCodes[0] : null;
       });
     });
   }
 
-  Future<List<String>> fetchShopCode() async {
+  Future<List<Map<String, dynamic>>> fetchShopCode() async {
     final response = await http.get(Uri.parse(
         'http://localhost:88/apiflutter_MiniProject/shop/show_shop.php'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      return data.map((item) => item['shopCode'] as String).toList();
+      return data
+          .map((item) => {
+                'shopName': item['shopName'] as String,
+                'shopCode': item['shopCode'] as String,
+              })
+          .toList();
     } else {
-      throw Exception('Failed to load tour codes');
+      throw Exception('Failed to load shop codes');
     }
   }
 
@@ -85,10 +92,10 @@ class _EditProPageState extends State<EditProPage> {
                   ),
                   DropdownButtonFormField(
                     value: shopCodeController.text,
-                    items: shopCode.map((String value) {
+                    items: shopCodes.map((Map<String, dynamic> shop) {
                       return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
+                        value: shop['shopCode'] as String,
+                        child: Text(shop['shopName'] as String),
                       );
                     }).toList(),
                     onChanged: (String? newValue) {

@@ -13,27 +13,32 @@ class _addProState extends State<addPro> {
   TextEditingController untiController = TextEditingController();
   TextEditingController priceController = TextEditingController();
 
-  List<String> shopCode = [];
-  String? selectedShopCode;
+  List<Map<String, dynamic>> shopCodes = [];
+  Map<String, dynamic>? selectedShop;
 
   @override
   void initState() {
     super.initState();
     fetchShopCodes().then((codes) {
       setState(() {
-        shopCode = codes;
-        selectedShopCode = shopCode.isNotEmpty ? shopCode[0] : null;
+        shopCodes = codes;
+        selectedShop = shopCodes.isNotEmpty ? shopCodes[0] : null;
       });
     });
   }
 
-  Future<List<String>> fetchShopCodes() async {
+  Future<List<Map<String, dynamic>>> fetchShopCodes() async {
     final response = await http.get(Uri.parse(
         'http://localhost:88/apiflutter_MiniProject/shop/show_shop.php'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      return data.map((item) => item['shopCode'] as String).toList();
+      return data
+          .map((item) => {
+                'shopName': item['shopName'] as String,
+                'shopCode': item['shopCode'] as String,
+              })
+          .toList();
     } else {
       throw Exception('Failed to load shop codes');
     }
@@ -44,12 +49,11 @@ class _addProState extends State<addPro> {
     String unti = untiController.text;
     String price = priceController.text;
 
-    // Replace the URL with the API endpoint for inserting into tourist_attraction
     String apiUrl =
         'http://localhost:88/apiflutter_MiniProject/product/add_tour.php';
 
     Map<String, dynamic> requestBody = {
-      'shopCode': selectedShopCode,
+      'shopCode': selectedShop!['shopCode'],
       'proName': proName,
       'unti': unti,
       'price': price,
@@ -86,7 +90,7 @@ class _addProState extends State<addPro> {
           },
         ),
         centerTitle: true,
-        title: Text('เพิ่มสถานที่ท่องเที่ยว'),
+        title: Text('เพิ่มสินค้า'),
         titleTextStyle: TextStyle(
           fontSize: 30,
           color: Colors.white,
@@ -97,20 +101,20 @@ class _addProState extends State<addPro> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DropdownButtonFormField<String>(
-              value: selectedShopCode,
-              items: shopCode.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
+            DropdownButtonFormField<Map<String, dynamic>>(
+              value: selectedShop,
+              items: shopCodes.map((Map<String, dynamic> shop) {
+                return DropdownMenuItem<Map<String, dynamic>>(
+                  value: shop,
+                  child: Text(shop['shopName'] as String),
                 );
               }).toList(),
-              onChanged: (String? newValue) {
+              onChanged: (Map<String, dynamic>? newValue) {
                 setState(() {
-                  selectedShopCode = newValue!;
+                  selectedShop = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: 'รหัสร้านค้า'),
+              decoration: InputDecoration(labelText: 'ร้านค้า'),
             ),
             SizedBox(height: 16.0),
             TextFormField(

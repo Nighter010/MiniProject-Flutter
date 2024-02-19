@@ -12,29 +12,34 @@ class _addTramtbState extends State<addTramtb> {
   TextEditingController No_tramController = TextEditingController();
   TextEditingController timeController = TextEditingController();
 
-  List<String> tourCode = [];
-  String? selectedtourCode;
+  List<Map<String, dynamic>> tourCodes = [];
+  Map<String, dynamic>? selectedTourCode;
 
   @override
   void initState() {
     super.initState();
-    fetchtourCodes().then((codes) {
+    fetchTourCodes().then((codes) {
       setState(() {
-        tourCode = codes;
-        selectedtourCode = tourCode.isNotEmpty ? tourCode[0] : null;
+        tourCodes = codes;
+        selectedTourCode = tourCodes.isNotEmpty ? tourCodes[0] : null;
       });
     });
   }
 
-  Future<List<String>> fetchtourCodes() async {
+  Future<List<Map<String, dynamic>>> fetchTourCodes() async {
     final response = await http.get(Uri.parse(
         'http://localhost:88/apiflutter_MiniProject/tourAt/show_tour.php'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      return data.map((item) => item['tourCode'] as String).toList();
+      return data
+          .map((item) => {
+                'tourName': item['tourName'] as String,
+                'tourCode': item['tourCode'] as String,
+              })
+          .toList();
     } else {
-      throw Exception('Failed to load shop codes');
+      throw Exception('Failed to load tour codes');
     }
   }
 
@@ -42,13 +47,13 @@ class _addTramtbState extends State<addTramtb> {
     String No_tram = No_tramController.text;
     String time = timeController.text;
 
-    // Replace the URL with the API endpoint for inserting into tourist_attraction
     String apiUrl =
         'http://localhost:88/apiflutter_MiniProject/tramTB/add_tourTB.php';
 
     Map<String, dynamic> requestBody = {
       'No_tram': No_tram,
-      'tourCode': tourCode,
+      'tourCode': selectedTourCode![
+          'tourCode'], // Assuming 'tramCode' is the correct key for tour code
       'time': time,
     };
 
@@ -107,17 +112,17 @@ class _addTramtbState extends State<addTramtb> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DropdownButtonFormField<String>(
-              value: selectedtourCode,
-              items: tourCode.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
+            DropdownButtonFormField<Map<String, dynamic>>(
+              value: selectedTourCode,
+              items: tourCodes.map((Map<String, dynamic> tour) {
+                return DropdownMenuItem<Map<String, dynamic>>(
+                  value: tour,
+                  child: Text(tour['tourName'] as String),
                 );
               }).toList(),
-              onChanged: (String? newValue) {
+              onChanged: (Map<String, dynamic>? newValue) {
                 setState(() {
-                  selectedtourCode = newValue!;
+                  selectedTourCode = newValue!;
                 });
               },
               decoration: InputDecoration(labelText: 'รหัสสถานที่ท่องเที่ยว'),

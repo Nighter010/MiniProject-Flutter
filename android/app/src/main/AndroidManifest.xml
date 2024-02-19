@@ -4,8 +4,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-         <meta-data android:name="com.google.android.geo.AIzaSyCejGvT7sqhBdIScABKrWHhgBAQAjp3ueo"
-android:value="AIzaSyCejGvT7sqhBdIScABKrWHhgBAQAjp3ueo"/>
+        
 
         <activity
             android:name=".MainActivity"
@@ -33,5 +32,7 @@ android:value="AIzaSyCejGvT7sqhBdIScABKrWHhgBAQAjp3ueo"/>
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+            <meta-data android:name="com.google.android.geo.AIzaSyDtqpmAB5iMRXmKuFTxp4Y9oWPU9Il67kE"
+android:value="AIzaSyDtqpmAB5iMRXmKuFTxp4Y9oWPU9Il67kE"/>
     </application>
 </manifest>
