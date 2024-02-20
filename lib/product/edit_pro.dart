@@ -145,8 +145,8 @@ class _EditProPageState extends State<EditProPage> {
                         var response = await http.put(
                           Uri.parse(apiUrl),
                           body: json.encode({
-                            'shopCode': updatedshopCode,
                             'proCode': updatedproCode,
+                            'shopCode': updatedshopCode,
                             'proName': updatedproName,
                             'unti': updatedunti,
                             'price': updatedprice,

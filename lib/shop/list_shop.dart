@@ -122,7 +122,8 @@ class _showShopState extends State<showShop> {
                             DataCell(Text(data['shopCode'].toString())),
                             DataCell(Text(data['shopName'].toString())),
                             DataCell(IconButton(
-                              icon: Icon(Icons.edit),
+                              icon: Icon(Icons.edit,
+                                  color: Color.fromARGB(255, 166, 170, 62)),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -134,7 +135,8 @@ class _showShopState extends State<showShop> {
                               },
                             )),
                             DataCell(IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: Icon(Icons.delete,
+                                  color: Color.fromARGB(255, 217, 12, 12)),
                               onPressed: () {
                                 showDialog(
                                   context: context,

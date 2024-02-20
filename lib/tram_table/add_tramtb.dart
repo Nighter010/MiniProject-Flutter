@@ -92,6 +92,7 @@ class _addTramtbState extends State<addTramtb> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 94, 255),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -103,7 +104,7 @@ class _addTramtbState extends State<addTramtb> {
         centerTitle: true,
         title: Text('เพิ่มเส้นทางเดินรถ'),
         titleTextStyle: TextStyle(
-          fontSize: 30,
+          fontSize: 20,
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),

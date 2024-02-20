@@ -52,6 +52,7 @@ class _addTourState extends State<addTour> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 94, 255),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -63,7 +64,7 @@ class _addTourState extends State<addTour> {
         centerTitle: true,
         title: Text('เพิ่มสถานที่ท่องเที่ยว'),
         titleTextStyle: TextStyle(
-          fontSize: 30,
+          fontSize: 20,
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),

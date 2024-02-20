@@ -110,7 +110,7 @@ class _showTourState extends State<showTour> {
                         DataColumn(label: Text('รหัสสถานที่')),
                         DataColumn(label: Text('ชื่อสถานที่')),
                         DataColumn(label: Text('ละติจูด')),
-                        DataColumn(label: Text('ลองติจูด)')),
+                        DataColumn(label: Text('ลองติจูด')),
                         DataColumn(
                           label: Text('แก้ไข'),
                         ),
@@ -126,7 +126,8 @@ class _showTourState extends State<showTour> {
                             DataCell(Text(data['latitude'].toString())),
                             DataCell(Text(data['longtitude'].toString())),
                             DataCell(IconButton(
-                              icon: Icon(Icons.edit),
+                              icon: Icon(Icons.edit,
+                                  color: Color.fromARGB(255, 166, 170, 62)),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -138,7 +139,8 @@ class _showTourState extends State<showTour> {
                               },
                             )),
                             DataCell(IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: Icon(Icons.delete,
+                                  color: Color.fromARGB(255, 217, 12, 12)),
                               onPressed: () {
                                 showDialog(
                                   context: context,

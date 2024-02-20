@@ -107,8 +107,6 @@ class _showTramTBState extends State<showTramTB> {
                     scrollDirection: Axis.horizontal,
                     child: DataTable(
                       columns: <DataColumn>[
-                        DataColumn(label: Text('ลำดับที่')),
-                        DataColumn(label: Text('รหัสสถานที่')),
                         DataColumn(label: Text('ชื่อสถานที่')),
                         DataColumn(label: Text('เวลา')),
                         DataColumn(
@@ -121,12 +119,11 @@ class _showTramTBState extends State<showTramTB> {
                       rows: snapshot.data!.map((data) {
                         return DataRow(
                           cells: <DataCell>[
-                            DataCell(Text(data['No_tram'].toString())),
-                            DataCell(Text(data['tourCode'].toString())),
                             DataCell(Text(data['tourName'].toString())),
                             DataCell(Text(data['time'].toString())),
                             DataCell(IconButton(
-                              icon: Icon(Icons.edit),
+                              icon: Icon(Icons.edit,
+                                  color: Color.fromARGB(255, 166, 170, 62)),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -138,7 +135,8 @@ class _showTramTBState extends State<showTramTB> {
                               },
                             )),
                             DataCell(IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: Icon(Icons.delete,
+                                  color: Color.fromARGB(255, 217, 12, 12)),
                               onPressed: () {
                                 showDialog(
                                   context: context,

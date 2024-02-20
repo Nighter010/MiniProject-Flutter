@@ -107,11 +107,8 @@ class _showProState extends State<showPro> {
                     scrollDirection: Axis.horizontal,
                     child: DataTable(
                       columns: <DataColumn>[
-                        DataColumn(label: Text('รหัสร้านค้า')),
                         DataColumn(label: Text('ชื่อร้านค้า')),
-                        DataColumn(label: Text('รหัสสินค้า')),
                         DataColumn(label: Text('ชื่อสินค้า')),
-                        DataColumn(label: Text('หน่วยนับ')),
                         DataColumn(label: Text('ราคา')),
                         DataColumn(
                           label: Text('แก้ไข'),
@@ -123,14 +120,12 @@ class _showProState extends State<showPro> {
                       rows: snapshot.data!.map((data) {
                         return DataRow(
                           cells: <DataCell>[
-                            DataCell(Text(data['shopCode'].toString())),
                             DataCell(Text(data['shopName'].toString())),
-                            DataCell(Text(data['proCode'].toString())),
                             DataCell(Text(data['proName'].toString())),
-                            DataCell(Text(data['unti'].toString())),
                             DataCell(Text(data['price'].toString())),
                             DataCell(IconButton(
-                              icon: Icon(Icons.edit),
+                              icon: Icon(Icons.edit,
+                                  color: Color.fromARGB(255, 166, 170, 62)),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -142,7 +137,8 @@ class _showProState extends State<showPro> {
                               },
                             )),
                             DataCell(IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: Icon(Icons.delete,
+                                  color: Color.fromARGB(255, 217, 12, 12)),
                               onPressed: () {
                                 showDialog(
                                   context: context,

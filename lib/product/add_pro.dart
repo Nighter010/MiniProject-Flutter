@@ -81,6 +81,7 @@ class _addProState extends State<addPro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 94, 255),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -92,7 +93,7 @@ class _addProState extends State<addPro> {
         centerTitle: true,
         title: Text('เพิ่มสินค้า'),
         titleTextStyle: TextStyle(
-          fontSize: 30,
+          fontSize: 20,
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
@@ -101,6 +102,11 @@ class _addProState extends State<addPro> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            Image.asset(
+              'images/products.png',
+              width: 40,
+              height: 40,
+            ),
             DropdownButtonFormField<Map<String, dynamic>>(
               value: selectedShop,
               items: shopCodes.map((Map<String, dynamic> shop) {

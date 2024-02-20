@@ -46,6 +46,7 @@ class _addShopState extends State<addShop> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 94, 255),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -55,9 +56,9 @@ class _addShopState extends State<addShop> {
           },
         ),
         centerTitle: true,
-        title: Text('เพิ่มรถราง'),
+        title: Text('เพิ่มร้านค้า'),
         titleTextStyle: TextStyle(
-          fontSize: 30,
+          fontSize: 20,
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
@@ -77,10 +78,10 @@ class _addShopState extends State<addShop> {
               style: OutlinedButton.styleFrom(
                 fixedSize: Size(300, 50),
                 side: BorderSide(
-                  color: Color.fromARGB(255, 0, 255, 0),
+                  color: Color.fromARGB(255, 39, 186, 39),
                   width: 2.0,
                 ),
-                backgroundColor: Color.fromARGB(255, 0, 255, 0),
+                backgroundColor: Color.fromARGB(255, 45, 149, 45),
               ),
             ),
           ],

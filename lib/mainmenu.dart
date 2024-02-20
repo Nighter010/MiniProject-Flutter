@@ -60,7 +60,7 @@ class mainMenu extends StatelessWidget {
                           Text(
                             'รถราง',
                             style: TextStyle(
-                              fontSize: screenWidth * 0.015,
+                              fontSize: screenWidth * 0.020,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -93,7 +93,7 @@ class mainMenu extends StatelessWidget {
                           Text(
                             'สถานที่ท่องเที่ยว',
                             style: TextStyle(
-                              fontSize: screenWidth * 0.013,
+                              fontSize: screenWidth * 0.020,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -132,7 +132,7 @@ class mainMenu extends StatelessWidget {
                           Text(
                             'ตารางเดินรถ',
                             style: TextStyle(
-                              fontSize: screenWidth * 0.013,
+                              fontSize: screenWidth * 0.020,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -163,9 +163,9 @@ class mainMenu extends StatelessWidget {
                             height: screenWidth * 0.12,
                           ),
                           Text(
-                            'ร้านค้า',
+                            'รายการร้านค้า',
                             style: TextStyle(
-                              fontSize: screenWidth * 0.013,
+                              fontSize: screenWidth * 0.020,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -202,9 +202,9 @@ class mainMenu extends StatelessWidget {
                             height: screenWidth * 0.12,
                           ),
                           Text(
-                            'สินค้า',
+                            'รายการสินค้า',
                             style: TextStyle(
-                              fontSize: screenWidth * 0.013,
+                              fontSize: screenWidth * 0.020,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -237,7 +237,7 @@ class mainMenu extends StatelessWidget {
                           Text(
                             'แผนที่',
                             style: TextStyle(
-                              fontSize: screenWidth * 0.013,
+                              fontSize: screenWidth * 0.020,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
